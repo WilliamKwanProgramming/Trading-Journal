@@ -1,0 +1,31 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.DS_Store
+data/csvs/
+node_modules/
+
+# Next.js
+.next/
+out/
+.vercel/
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# TypeScript and build metadata
+*.tsbuildinfo
+
+# Local SQLite databases and runtime files
+data/*.db*
+
+# Test coverage and logs
+.coverage
+coverage/
+htmlcov/
+*.log
+npm-debug.log*
