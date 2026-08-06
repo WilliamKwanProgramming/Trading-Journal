@@ -3,7 +3,6 @@ __pycache__/
 .pytest_cache/
 *.py[cod]
 .DS_Store
-data/csvs/
 node_modules/
 
 # Next.js
@@ -20,8 +19,9 @@ out/
 # TypeScript and build metadata
 *.tsbuildinfo
 
-# Local SQLite databases and runtime files
-data/*.db*
+# Local SQLite runtime files; the journal database itself is versioned
+data/*.db-shm
+data/*.db-wal
 
 # Test coverage and logs
 .coverage
