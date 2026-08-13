@@ -62,6 +62,8 @@ export interface Metrics {
   expectancyCad: number | null;
   kellyPct: number | null;
   netPnlCad: number;
+  realizedPnlCad: number;
+  openMarkedPnlCad: number;
   grossProfitCad: number;
   grossLossCad: number;
   maxDrawdownCad: number;

@@ -331,6 +331,10 @@ export function buildMetrics(cycles: TradeCycle[], usdCadRate: number): Metrics 
   );
   const netPnlCad = cycles
     .reduce((sum, cycle) => sum + inCad(cycle.totalPnl, cycle.currency), 0);
+  const realizedPnlCad = cycles
+    .reduce((sum, cycle) => sum + inCad(cycle.realizedPnl, cycle.currency), 0);
+  const openMarkedPnlCad = cycles
+    .reduce((sum, cycle) => sum + inCad(cycle.unrealizedPnl, cycle.currency), 0);
   const avgWin = average(winnerReturns);
   const avgLoss = average(loserReturns);
   const winnerCad = wins.map((cycle) => inCad(cycle.totalPnl, cycle.currency));
@@ -359,6 +363,8 @@ export function buildMetrics(cycles: TradeCycle[], usdCadRate: number): Metrics 
     expectancyCad,
     kellyPct: winRate !== null && payoff ? (winRate / 100 - (1 - winRate / 100) / payoff) * 100 : null,
     netPnlCad,
+    realizedPnlCad,
+    openMarkedPnlCad,
     grossProfitCad,
     grossLossCad,
     maxDrawdownCad: Math.max(
