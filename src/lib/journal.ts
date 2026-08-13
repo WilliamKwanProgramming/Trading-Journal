@@ -12,6 +12,7 @@ import type {
   TradeRow,
   TradeSide,
 } from "@/lib/types";
+import { buildStatisticalEdge } from "@/lib/statistics";
 
 function nowIso() {
   return new Date().toISOString();
@@ -414,11 +415,13 @@ export function getJournalData(): JournalData {
   const fxRate = getFxRate();
   const barsByTicker = getMarketBars([...new Set(trades.map((trade) => trade.ticker))]);
   const cycles = buildTradeCycles(trades, barsByTicker);
+  const metrics = buildMetrics(cycles, fxRate?.rate ?? 1);
   return {
     trades: [...trades].reverse(),
     cycles,
     positions: buildPositions(cycles, barsByTicker, fxRate?.rate ?? 1),
-    metrics: buildMetrics(cycles, fxRate?.rate ?? 1),
+    metrics,
+    statisticalEdge: buildStatisticalEdge(cycles, fxRate?.rate ?? 1, metrics.maxDrawdownCad),
     fxRate,
     syncStatuses: getSyncStatuses(),
   };
